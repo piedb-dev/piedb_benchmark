@@ -1,5 +1,11 @@
 # piedb_benchmark
 Use tests with realistic datasets/queries to quantitatively benchmark PIEDB.
+This repository contains the code of the PIEDB benchmark.
+
+It includes:
+- [TPS](./src/tps):  
+- [QPS](./src/qps):  
+- [RT](./src/rt):  
 
 ## Workload Generator
 
