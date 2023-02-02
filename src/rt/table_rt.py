@@ -2,8 +2,12 @@
 # @Time : 2023/2/2  16:23
 # @Author : wangdexin
 # @File : table_rt.py
-import psycopg2,time,datetime,random
+import psycopg2,time,datetime,random,os,sys
 from datagen.create_table_random import InsertValue
+root_path = os.path.abspath(__file__)
+root_path = '/'.join(root_path.split('/')[:-3])
+sys.path.append(root_path)
+
 class Table_RT(object):
     def __init__(self):
         self.conn = psycopg2.connect(
@@ -32,7 +36,15 @@ class Table_RT(object):
             cursor.execute(sql)
         except:
             pass
+    def delete_index(self):
+        try:
+            sql = '''drop index uid_i;'''
+            cursor = self.conn.cursor()
+            cursor.execute(sql)
+        except:
+            pass
     def run(self):
+        self.delete_index()
         self.delete_table()
         self.create_table()
         self.create_index()
