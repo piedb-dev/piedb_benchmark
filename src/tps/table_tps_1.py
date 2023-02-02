@@ -50,6 +50,5 @@ class Test(object):
         self.conn.close()
 
 if __name__ == '__main__':
-
     test = Test()
     test.run()
