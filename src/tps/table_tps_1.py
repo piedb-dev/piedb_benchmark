@@ -17,8 +17,8 @@ class Test(object):
         cursor = self.conn.cursor()
         for i in range(1,10000):
             v2 = random.uniform(1, 1000)
-            t1 = datetime.datetime.now()
-            sql = '''insert into t values({},{},{},{},'test1','test2','{}');'''.format(i,i,i,v2,t1)
+            update_time = datetime.datetime.now()
+            sql = '''insert into t values({},{},{},{},'test1','test2','{}');'''.format(i,i,i,v2,update_time)
             cursor.execute(sql)
         t2 = time.time()
         inter = t2-t1
