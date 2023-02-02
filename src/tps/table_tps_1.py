@@ -3,7 +3,6 @@
 # @Author : wangdexin
 # @File : table_tps_1.py.py
 import time,re,psycopg2
-from tools import get_hardware_info
 import random,datetime
 class Test(object):
     def __init__(self):
@@ -43,7 +42,6 @@ class Test(object):
 
 
     def run(self):
-        get_hardware_info.get_os_info()
         self.delete_table()
         self.create_table()
         self.parse()
