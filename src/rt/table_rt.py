@@ -3,12 +3,16 @@
 # @Author : wangdexin
 # @File : table_rt.py
 import psycopg2,time,datetime,random,os,sys
-from datagen.create_table_random import InsertValue
 root_path = os.path.abspath(__file__)
 root_path = '/'.join(root_path.split('/')[:-3])
 sys.path.append(root_path)
+from datagen.create_table_random import InsertValue
+
 
 class Table_RT(object):
+
+
+
     def __init__(self):
         self.conn = psycopg2.connect(
             database="dev",
