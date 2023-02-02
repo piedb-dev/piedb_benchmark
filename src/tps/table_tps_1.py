@@ -15,7 +15,7 @@ class Test(object):
     def parse(self):
         t1 = time.time()
         cursor = self.conn.cursor()
-        for i in range(1,10000):
+        for i in range(1,100000):
             v2 = random.uniform(1, 1000)
             update_time = datetime.datetime.now()
             sql = '''insert into t values({},{},{},{},'test1','test2','{}');'''.format(i,i,i,v2,update_time)
@@ -23,10 +23,10 @@ class Test(object):
         t2 = time.time()
         inter = t2-t1
         print(inter)
-        tps = 10000/inter
+        tps = 100000/inter
         print('tps = {}'.format(tps))
     def create_table(self):
-        sql = '''create table t (id int,uid int,v1 int,v2 float,s1 varchar,s2 varchar,t1 timestamp);'''
+        sql = '''create table t (id int,uid int,v1 int,v2 float,s1 varchar,s2 varchar,update_time timestamp);'''
         cursor = self.conn.cursor()
         cursor.execute(sql)
 
