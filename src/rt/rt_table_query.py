@@ -33,16 +33,19 @@ class Table(object):
         PreTable().run()
         self.insert_0_50w()
         time.sleep(3)
-        key = random.randint(1,500000)
-        conn = SelectTable()
-        for sq in select_table_pointget:
-            sql = sq.format(key)
-            conn.select(sql)
+        ii = 0
+        while ii<5:
+            ii+=1
+            key = random.randint(1,500000)
+            conn = SelectTable()
+            for sq in select_table_pointget:
+                sql = sq.format(key)
+                conn.select(sql)
 
-        key_scan = random.randint(1,490000)
-        for sq in select_table_scan:
-            sql = sq.format(key_scan,key_scan+10000)
-            conn.select(sql)
+            key_scan = random.randint(1,490000)
+            for sq in select_table_scan:
+                sql = sq.format(key_scan,key_scan+10000)
+                conn.select(sql)
 
 
 if __name__ == '__main__':
