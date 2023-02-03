@@ -2,12 +2,14 @@
 # @Time : 2023/2/2  11:11
 # @Author : wangdexin
 # @File : create_table_1000.py
-import sys,os
+import sys,os,logging
 root_path = os.path.abspath(__file__)
 root_path = '/'.join(root_path.split('/')[:-3])
 sys.path.append(root_path)
 from connect import MyLoggingConnection
 import psycopg2,random,datetime
+logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger(__name__)
 class InsertValue(object):
     def __init__(self):
         self.conn = psycopg2.connect(
@@ -17,6 +19,8 @@ class InsertValue(object):
             host="127.0.0.1",
             port=5505
         )
+        self.conn.initialize(logger)
+
 
     def parse(self,c1,c2):
         cursor = self.conn.cursor()
@@ -48,6 +52,8 @@ class PreTable(object):
             host="127.0.0.1",
             port=5505
         )
+        self.conn.initialize(logger)
+
     def create_table(self):
         sql = '''create table t (id int primary key,uid int,v1 int,v2 float,s1 varchar,s2 varchar,update_time timestamp);'''
         cursor = self.conn.cursor()
@@ -93,6 +99,7 @@ class SelectTable(object):
             host="127.0.0.1",
             port=5505
         )
+        self.conn.initialize(logger)
 
     def select(self,sql):
         cursor = self.conn.cursor()
