@@ -16,18 +16,21 @@ class Kafka(object):
             cur = cur+1
             v2 = random.uniform(1, 1000)
             update_time = datetime.datetime.now()
+            now = int(round(time.time() * 1000))
+            date_v = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(now / 1000))
+
             json_object['id'] = cur
             json_object['uid'] = cur
             json_object['v1'] = cur
             json_object['v2'] = v2
             json_object['s1'] = 'test1'
             json_object['s2'] = 'test2'
-            json_object['update_time'] = update_time
+            json_object['time_point'] = date_v
             value = json.dumps(json_object)
             try:
                 producer.send(
                     kafkaTopic,
-                    key=str(json_object["update_time"]).encode("utf8"),
+                    key=str(json_object["time_point"]).encode("utf8"),
                     value=value.encode("utf-8"),
                 )
                 if cur % 10000 == 0:
