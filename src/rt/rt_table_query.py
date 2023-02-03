@@ -18,10 +18,10 @@ class Table(object):
         c1 = 0
         c2 = 500000
         InsertValue().run(c1,c2)
-    def insert_50w_500w(self):
+    def insert_50w_100w(self):
         logger.info("Writing 500w data！！! please waiting....")
         c1 = 500000
-        c2 = 5000000
+        c2 = 1000000
         InsertValue().run(c1,c2)
     def insert_500w_1000w(self):
         logger.info("Writing 1000w data！！! please waiting....")
@@ -35,6 +35,7 @@ class Table(object):
         time.sleep(3)
         ii = 0
         while ii<5:
+            logger.info("50w data,{} !!!!".format(ii))
             ii+=1
             key = random.randint(1,500000)
             conn = SelectTable()
@@ -46,19 +47,20 @@ class Table(object):
             for sq in select_table_scan:
                 sql = sq.format(key_scan,key_scan+10000)
                 conn.select(sql)
-    def parse_500w(self):
-        self.insert_50w_500w()
+    def parse_100w(self):
+        self.insert_50w_100w()
         time.sleep(5)
         ii = 0
         while ii<5:
+            logger.info("100w data,{} !!!!".format(ii))
             ii+=1
-            key = random.randint(1,5000000)
+            key = random.randint(1,1000000)
             conn = SelectTable()
             for sq in select_table_pointget:
                 sql = sq.format(key)
                 conn.select(sql)
 
-            key_scan = random.randint(1,4990000)
+            key_scan = random.randint(1,990000)
             for sq in select_table_scan:
                 sql = sq.format(key_scan,key_scan+10000)
                 conn.select(sql)
@@ -68,6 +70,7 @@ class Table(object):
         time.sleep(10)
         ii = 0
         while ii<5:
+            logger.info("1000w data,{} !!!!".format(ii))
             ii+=1
             key = random.randint(1,10000000)
             conn = SelectTable()
@@ -83,7 +86,7 @@ class Table(object):
 if __name__ == '__main__':
     ta = Table()
     ta.parse_50w()
-    ta.parse_500w()
-    ta.parse_1000w()
+    ta.parse_100w()
+    # ta.parse_1000w()
 
 
