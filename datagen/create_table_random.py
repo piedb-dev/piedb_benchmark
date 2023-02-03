@@ -13,13 +13,11 @@ logger = logging.getLogger(__name__)
 class InsertValue(object):
     def __init__(self):
         self.conn = psycopg2.connect(
-            connection_factory=MyLoggingConnection,
             database="dev",
             user="root",
             host="127.0.0.1",
             port=5505
         )
-        self.conn.initialize(logger)
 
 
     def parse(self,c1,c2):
