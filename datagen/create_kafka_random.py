@@ -10,8 +10,8 @@ class Kafka(object):
         pass
     def parse(self, kafkaTopic):
         producer = KafkaProducer(bootstrap_servers='127.0.0.1:9092')
-        cur = 0
-        while cur < 500000:
+        cur = 500000
+        while cur < 5000000:
             json_object = {}
             cur = cur+1
             v2 = random.uniform(1, 1000)
