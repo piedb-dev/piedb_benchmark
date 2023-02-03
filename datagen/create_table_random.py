@@ -22,10 +22,20 @@ class InsertValue(object):
 
     def parse(self,c1,c2):
         cursor = self.conn.cursor()
-        for i in range(c1,c2):
-            v2 = random.uniform(1, 1000)
-            update_time = datetime.datetime.now()
-            sql = '''insert into t values({},{},{},{},'test1','test2','{}');'''.format(i,i,i,v2,update_time)
+        # for i in range(c1,c2):
+        #     v2 = random.uniform(1, 1000)
+        #     update_time = datetime.datetime.now()
+        #     sql = '''insert into t values({},{},{},{},'test1','test2','{}');'''.format(i,i,i,v2,update_time)
+        #     cursor.execute(sql)
+        for step in range(c1,c2,10):
+            li = []
+            for j in range(step,step+10):
+                v2 = random.uniform(1, 1000)
+                update_time = datetime.datetime.now()
+                vv = '''({},{},{},{},'test1','test2','{}')'''.format(j,j,j,v2,update_time)
+                li.append(vv)
+            v = ','.join(li)
+            sql = '''insert into t values {};'''.format(v)
             cursor.execute(sql)
         self.conn.commit()
         cursor.close()
