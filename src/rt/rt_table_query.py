@@ -9,7 +9,7 @@ sys.path.append(root_path)
 from datagen.create_table_random import PreTable,InsertValue,SelectTable
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
-
+from sql.sql import select_table_scan,select_table_pointget
 class Table(object):
     def __init__(self):
         pass
@@ -33,20 +33,16 @@ class Table(object):
         PreTable().run()
         self.insert_0_50w()
         time.sleep(3)
-        sql_pointget_pk = 'select * from t where id = 10000;'
-        sql_pointget_index = 'select * from t where uid = 10000;'
-        sql_pointget_normal = 'select * from t where v1 = 10000;'
-
-        sql_scan_pk = 'select * from t where id < 10000 and id > 0;'
-        sql_scan_index = 'select * from t where id < 10000 and id > 0;'
-        sql_scan_normal = 'select * from t where id < 10000 and id > 0;'
+        key = random.randint(1,500000)
         conn = SelectTable()
-        conn.select(sql_pointget_pk)
-        conn.select(sql_pointget_index)
-        conn.select(sql_pointget_normal)
-        conn.select(sql_scan_pk)
-        conn.select(sql_scan_index)
-        conn.select(sql_scan_normal)
+        for sq in select_table_pointget:
+            sql = sq.format(key)
+            conn.select(sql)
+
+        key_scan = random.randint(1,490000)
+        for sq in select_table_scan:
+            sql = sq.format(key_scan,key_scan+10000)
+            conn.select(sql)
 
 
 if __name__ == '__main__':
