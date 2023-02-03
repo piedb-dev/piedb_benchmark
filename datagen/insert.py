@@ -11,7 +11,7 @@ class Insert(object):
             database="dev",
             user="root",
             host="localhost",
-            port=5505
+            port=4505
         )
         self.cursor = conn.cursor()
 
