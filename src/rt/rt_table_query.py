@@ -29,7 +29,7 @@ class Table(object):
         c2 = 10000000
         InsertValue().run(c1,c2)
 
-    def parse(self):
+    def parse_50w(self):
         PreTable().run()
         self.insert_0_50w()
         time.sleep(3)
@@ -46,9 +46,44 @@ class Table(object):
             for sq in select_table_scan:
                 sql = sq.format(key_scan,key_scan+10000)
                 conn.select(sql)
+    def parse_500w(self):
+        self.insert_50w_500w()
+        time.sleep(5)
+        ii = 0
+        while ii<5:
+            ii+=1
+            key = random.randint(1,5000000)
+            conn = SelectTable()
+            for sq in select_table_pointget:
+                sql = sq.format(key)
+                conn.select(sql)
 
+            key_scan = random.randint(1,4990000)
+            for sq in select_table_scan:
+                sql = sq.format(key_scan,key_scan+10000)
+                conn.select(sql)
+
+    def parse_1000w(self):
+        self.insert_500w_1000w()
+        time.sleep(10)
+        ii = 0
+        while ii<5:
+            ii+=1
+            key = random.randint(1,10000000)
+            conn = SelectTable()
+            for sq in select_table_pointget:
+                sql = sq.format(key)
+                conn.select(sql)
+
+            key_scan = random.randint(1,99990000)
+            for sq in select_table_scan:
+                sql = sq.format(key_scan,key_scan+10000)
+                conn.select(sql)
 
 if __name__ == '__main__':
     ta = Table()
-    ta.parse()
+    ta.parse_50w()
+    ta.parse_500w()
+    ta.parse_1000w()
+
 
