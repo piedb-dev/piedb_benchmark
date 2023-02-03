@@ -7,12 +7,14 @@ root_path = os.path.abspath(__file__)
 root_path = '/'.join(root_path.split('/')[:-3])
 sys.path.append(root_path)
 from datagen.create_table_random import PreTable,InsertValue,SelectTable
-
+logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger(__name__)
 
 class Table(object):
     def __init__(self):
         pass
     def insert_0_50w(self):
+        logger.info("Writing data！！! waiting....")
         c1 = 0
         c2 = 500000
         InsertValue().run(c1,c2)
@@ -30,8 +32,7 @@ class Table(object):
         self.insert_0_50w()
         time.sleep(3)
         sql = "select * from t;"
-        nums = SelectTable().select(sql)
-        print(nums)
+        SelectTable().select(sql)
 
 if __name__ == '__main__':
     ta = Table()
