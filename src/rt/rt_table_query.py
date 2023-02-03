@@ -14,7 +14,7 @@ class Table(object):
     def __init__(self):
         pass
     def insert_0_50w(self):
-        logger.info("Writing data！！! waiting....")
+        logger.info("Writing 50w data！！! please waiting....")
         c1 = 0
         c2 = 500000
         InsertValue().run(c1,c2)
@@ -31,6 +31,8 @@ class Table(object):
         PreTable().run()
         self.insert_0_50w()
         time.sleep(3)
+        logger.info("")
+
         sql = "select * from t;"
         SelectTable().select(sql)
 
