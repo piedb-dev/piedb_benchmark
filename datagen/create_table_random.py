@@ -22,9 +22,9 @@ class InsertValue(object):
 
     def parse(self,c1,c2):
         cursor = self.conn.cursor()
-        for step in range(c1,c2,20):
+        for step in range(c1,c2,10):
             li = []
-            for j in range(step,step+20):
+            for j in range(step,step+10):
                 v2 = random.uniform(1, 1000)
                 update_time = datetime.datetime.now()
                 vv = '''({},{},{},{},'test1','test2','{}')'''.format(j,j,j,v2,update_time)
