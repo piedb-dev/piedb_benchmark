@@ -2,11 +2,16 @@
 # @Time : 2023/2/2  11:11
 # @Author : wangdexin
 # @File : create_table_1000.py
-
+import sys,os
+root_path = os.path.abspath(__file__)
+root_path = '/'.join(root_path.split('/')[:-3])
+sys.path.append(root_path)
+from connect import MyLoggingConnection
 import psycopg2,random,datetime
 class InsertValue(object):
     def __init__(self):
         self.conn = psycopg2.connect(
+            connection_factory=MyLoggingConnection,
             database="dev",
             user="root",
             host="127.0.0.1",
@@ -37,6 +42,7 @@ class InsertValue(object):
 class PreTable(object):
     def __init__(self):
         self.conn = psycopg2.connect(
+            connection_factory=MyLoggingConnection,
             database="dev",
             user="root",
             host="127.0.0.1",
@@ -81,6 +87,7 @@ class PreTable(object):
 class SelectTable(object):
     def __init__(self):
         self.conn = psycopg2.connect(
+            connection_factory=MyLoggingConnection,
             database="dev",
             user="root",
             host="127.0.0.1",
