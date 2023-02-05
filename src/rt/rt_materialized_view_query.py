@@ -21,13 +21,13 @@ class View(object):
         while ii<5:
             logger.info("500w data source,{} !!!!".format(ii))
             ii+=1
-            key = random.randint(500000,5000000)
+            key = random.randint(0,10000000)
             conn = SelectTable()
             for sq in select_view_pointget:
                 sql = sq.format(key)
                 conn.select(sql)
 
-            key_scan = random.randint(500000,4990000)
+            key_scan = random.randint(0,9990000)
             for sq in select_view_scan:
                 sql = sq.format(key_scan,key_scan+10000)
                 conn.select(sql)
