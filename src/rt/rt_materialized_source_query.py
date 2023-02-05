@@ -35,13 +35,13 @@ class Table(object):
         while ii<5:
             logger.info("500w data source,{} !!!!".format(ii))
             ii+=1
-            key = random.randint(1,50000000)
+            key = random.randint(1,100000000)
             conn = SelectTable()
             for sq in select_source_pointget:
                 sql = sq.format(key)
                 conn.select(sql)
 
-            key_scan = random.randint(1,49990000)
+            key_scan = random.randint(1,99990000)
             for sq in select_source_scan:
                 sql = sq.format(key_scan,key_scan+10000)
                 conn.select(sql)
