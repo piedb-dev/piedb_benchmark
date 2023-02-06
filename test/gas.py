@@ -46,7 +46,7 @@ class Kafka(object):
                             )
 
                             if cur % 10000 == 0:
-                                print("count = %d" % i)
+                                print("count = %d" % cur)
                         except Exception as e:
                             print(str(e))
 
