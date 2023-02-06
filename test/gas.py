@@ -15,8 +15,9 @@ class Kafka(object):
         pass
     def parse(self, kafkaTopic):
         producer = KafkaProducer(bootstrap_servers='127.0.0.1:9092')
-        cur = 1000000
+        cur = 10000000
         while True:
+            # time.sleep(0.4)
             for i in blast_furnace_list:
                 for j in host_list:
                     json_object = {}
@@ -35,6 +36,7 @@ class Kafka(object):
                         json_object['concentration'] = value
                         json_object['time_point'] = date_v
                         # json_object['update_time'] = now
+                        # print(json_object)
                         value = json.dumps(json_object)
                         try:
                             producer.send(
@@ -43,8 +45,8 @@ class Kafka(object):
                                 value=value.encode("utf-8"),
                             )
 
-                            if i % 10000 == 0:
-                                print("count=%d" % i)
+                            if cur % 10000 == 0:
+                                print("count = %d" % i)
                         except Exception as e:
                             print(str(e))
 
