@@ -15,23 +15,23 @@ class Insert(object):
         )
         self.cursor = conn.cursor()
 
-    # def parse(self):
-    #     for step in range(1,5000000,10):
-    #         li = []
-    #         for j in range(step,step+10):
-    #             v2 = random.uniform(1, 1000)
-    #             update_time = datetime.datetime.now()
-    #             vv = '''({},{},{},{},'test1','test2','{}')'''.format(j,j,j,v2,update_time)
-    #             li.append(vv)
-    #         v = ','.join(li)
-    #         sql = '''insert into t values {};'''.format(v)
-    #         self.cursor.execute(sql)
     def parse(self):
-        for i in range(1,5000000):
-            v2 = random.uniform(1, 1000)
-            update_time = datetime.datetime.now()
-            sql = '''insert into t values({},{},{},{},'test1','test2','{}');'''.format(i,i,i,v2,update_time)
+        for step in range(1,3000000,10):
+            li = []
+            for j in range(step,step+10):
+                v2 = random.uniform(1, 1000)
+                update_time = datetime.datetime.now()
+                vv = '''({},{},{},{},'test1','test2','{}')'''.format(j,j,j,v2,update_time)
+                li.append(vv)
+            v = ','.join(li)
+            sql = '''insert into t values {};'''.format(v)
             self.cursor.execute(sql)
+    # def parse(self):
+    #     for i in range(1,5000000):
+    #         v2 = random.uniform(1, 1000)
+    #         update_time = datetime.datetime.now()
+    #         sql = '''insert into t values({},{},{},{},'test1','test2','{}');'''.format(i,i,i,v2,update_time)
+    #         self.cursor.execute(sql)
 
     def run(self):
         self.parse()
